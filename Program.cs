@@ -15,13 +15,14 @@
                 { "M", 1000 },
             };
 
-            string romanValue = "XXVII";
+            string romanValue = "XXIV";
             List<string> romanValueList = new List<string>();
             List<int> integerValueList = new List<int>();
 
-            for (int i = 0; i < romanValue.Length; i++) 
+            for (int value = 0; value < romanValue.Length; value++) 
             {
-                romanValueList.Add(romanValue[i].ToString());
+                romanValueList.Add(romanValue[value].ToString());
+
             }
 
             foreach (string value in romanValueList)
@@ -31,6 +32,21 @@
                 integerValueList.Add(intValue);
             }
 
+            for(int i = 0; i < integerValueList.Count - 1; i++)
+            {
+                int leftVal = integerValueList[i];
+                int rightVal = integerValueList[i + 1];
+
+                if (leftVal < rightVal)
+                {
+                    int updatedVal = rightVal - leftVal;
+                    integerValueList.Add((int) updatedVal);
+                    integerValueList.Remove(leftVal);
+                    integerValueList.Remove(rightVal);
+                }
+            }
+            int total = integerValueList.Sum(x => x);
+            Console.WriteLine(total);
 
         }
     }
